@@ -5,6 +5,10 @@
  */
 package com.GUI;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Guest
@@ -227,6 +231,8 @@ public class StudentManage extends javax.swing.JFrame {
                 .addGap(36, 36, 36))
         );
 
+        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
+
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("ACADEMIC INFORMATION:");
 
@@ -391,6 +397,34 @@ public class StudentManage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try{
+        String name=jTextField1.getText();
+        int age=Integer.parseInt(jTextField2.getText());
+        int poBox=Integer.parseInt(jTextField3.getText());
+        String temporary=jTextField4.getText();
+        String permanent=jTextField5.getText();
+        String gender=jTextField6.getText();
+        String academicQualification=jTextField7.getText();
+        String schoolName=jTextField8.getText();
+        String collegeName=jTextField9.getText();
+        Double schoolPercentage=Double.parseDouble(jTextField10.getText());
+        Double collegePercentage=Double.parseDouble(jTextField11.getText());
+        String intendedCourse=jTextField12.getText();
+        String destinationCountry=jTextField13.getText();
+        String shortBio=jTextArea1.getText();
+        
+        Address a=new Address(shortBio, temporary, permanent);
+        Student s=new Student(schoolName, collegeName, destinationCountry, intendedCourse, shortBio, schoolPercentage, collegePercentage, name, name, age, 'm',a);
+        s.saveToFile();
+        } catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Number font not valid:");
+        } catch (InputMismatchException e){
+            JOptionPane.showMessageDialog(this, "Plese enter a valid number:");
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(this, "Error writing to file:");
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Error occured:");    
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
